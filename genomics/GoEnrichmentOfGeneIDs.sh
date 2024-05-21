@@ -93,6 +93,22 @@ analysisId=`curl -s -S -b $cookieJar \
      jq .analysisId`
 
 #---------------------------------------------------------------
+# start the analysis job
+#---------------------------------------------------------------
+
+echo "\nStarting the analysis job..."
+start_analysis_url="$webappUrl/service/users/current/steps/$stepId/analyses/$analysisId/result"
+start_analysis_response=$(curl -s -S -b $cookieJar \
+     -X POST \
+     -H "Content-Type: application/json" \
+     $start_analysis_url)
+
+# Check the HTTP status code
+http_status=$(echo "$start_analysis_response" | jq -r '.status')
+
+echo "Analysis job started with status: $http_status"
+
+#---------------------------------------------------------------
 # wait for analysis to complete
 #---------------------------------------------------------------
 
