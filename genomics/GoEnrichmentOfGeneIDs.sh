@@ -96,7 +96,7 @@ analysisId=`curl -s -S -b $cookieJar \
 # start the analysis job
 #---------------------------------------------------------------
 
-echo "\nStarting the analysis job..."
+echo "Starting the analysis job..."
 start_analysis_url="$webappUrl/service/users/current/steps/$stepId/analyses/$analysisId/result"
 start_analysis_response=$(curl -s -S -b $cookieJar \
      -X POST \
